@@ -36,7 +36,7 @@ if (!empty($data)) {
     $awayTeamScore = $data[0]['away_team']['goals'];
     $scoreLine = "$homeTeamFlag $homeTeamScore — $awayTeamScore $awayTeamFlag";
 } else {
-    $scoreLine = "⚽ ผลบอลล่าสุด ⚽";
+    $scoreLine = "⚽ ผลบอลล่าสุด ⚽<br>".date("Y-m-d H:i:s")."<br>";
 };
 echo $scoreLine;
 $todayJson = file_get_contents("http://worldcup.sfg.io/matches/today");
@@ -57,10 +57,10 @@ if (!empty($todayData)) {
             $time = $todayData[$n]['time'];
             $scores = $scores . " " . $time . " ⚽";
         } else {
-            $scores .= " ";
+            $scores .= "<br>1";
         }
         if (($todayData[$n]['status'] == "completed") || ($todayData[$n]['status'] == "in progress")) {
-            echo "\n";
+            echo "<br>2";
             $arrayEvents = array_merge($todayData[$n]['home_team_events'], $todayData[$n]['away_team_events']);
             $arraySortEvents = array_msort($arrayEvents, array('id'=>SORT_ASC));
             foreach ($arraySortEvents as $val) {
@@ -88,7 +88,7 @@ if (!empty($todayData)) {
             }
             echo $scores;
         } else {
-            echo "\n\n\n".$scores;
+            echo "<hr><br>".$scores;
         }
     }
 }

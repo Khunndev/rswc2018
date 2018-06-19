@@ -93,7 +93,7 @@ if (!empty($todayData)) {
                 if ($val['type_of_event'] == "red-card") {
                     $scores .= "🎴";
                 }
-                $scores .= "";
+                $scores .= "\n";
             }
             echo $scores;
             

@@ -51,7 +51,7 @@ $todayData = json_decode($todayJson, true);
 if (!empty($todayData)) {
     $cnt = count($todayData);
     for ($n = 0; $n < $cnt; $n++) {
-        echo "\\n----------------";
+        echo "\\n*******************";
         $team1 = $todayData[$n]['home_team']['country'];
         $team1code =  $todayData[$n]['home_team']['code'];
         $team1flag = $flags[$team1code];
@@ -63,11 +63,11 @@ if (!empty($todayData)) {
         $scores = "$team1code $team1flag $team1s – $team2s $team2flag $team2code";
         if (($todayData[$n]['status']) == "in progress") {
             $time = $todayData[$n]['time'];
-            $scores = $scores . " " . $time . "⚽";
+            $scores = $scores . "กำลังแข่ง " . $time . "⚽";
         } else {
             $scores .= "";
         }
-        $scores .= "\\n***********";
+        $scores .= "\\n*******************";
         if (($todayData[$n]['status'] == "completed") || ($todayData[$n]['status'] == "in progress")) {
             echo "\\n";
 
@@ -99,7 +99,7 @@ if (!empty($todayData)) {
             echo $scores;
             
         } else {
-            echo "\\n4------------------\\n".$scores;
+            echo "\\n".$scores;
         }
     }
 }

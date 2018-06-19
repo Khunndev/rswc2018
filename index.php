@@ -1,5 +1,3 @@
-#!/usr/bin/php
-
 <?php
 
 function array_msort($array, $cols)
@@ -40,7 +38,7 @@ if (!empty($data)) {
 } else {
     $scoreLine = "⚽";
 };
-echo "<hr>".$scoreLine;
+echo "\n".$scoreLine;
 $todayJson = file_get_contents("http://worldcup.sfg.io/matches/today");
 $todayData = json_decode($todayJson, true);
 if (!empty($todayData)) {
@@ -63,12 +61,12 @@ if (!empty($todayData)) {
             $scores .= " | href=$match";
         }
         if (($todayData[$n]['status'] == "completed") || ($todayData[$n]['status'] == "in progress")) {
-            echo "<hr>";
+            echo "\n";
             $arrayEvents = array_merge($todayData[$n]['home_team_events'], $todayData[$n]['away_team_events']);
             $arraySortEvents = array_msort($arrayEvents, array('id'=>SORT_ASC));
             foreach ($arraySortEvents as $val) {
                 if (in_array($val['type_of_event'], array('goal', "goal-own", "goal-penalty"))) {
-                    $scores .= "\n\033[35m";
+                    $scores .= "\n";
                     $scores .= $val['player'] . " " . $val['time'];
                 }
                 if ($val['type_of_event'] == "goal-penalty") {
@@ -78,20 +76,20 @@ if (!empty($todayData)) {
                     $scores .= " (OG)";
                 }
                 if (in_array($val['type_of_event'], array('red-card', "yellow-card"))) {
-                    $scores .= "\n\033[35m";
+                    $scores .= "\n";
                     $scores .= $val['player'] . " " . $val['time'];
                 }
                 if ($val['type_of_event'] == "yellow-card") {
-                    $scores .= " \033[1;33m◼\033[0m";
+                    $scores .= " Yellow card";
                 }
                 if ($val['type_of_event'] == "red-card") {
-                    $scores .= " \033[1;31m◼\033[0m";
+                    $scores .= " Red card";
                 }
-                $scores .= " | size=11";
+                $scores .= "";
             }
             echo $scores;
         } else {
-            echo "<hr>".$scores;
+            echo "\n".$scores;
         }
     }
 }

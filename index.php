@@ -84,7 +84,7 @@ if (!empty($todayData)) {
                     $scores .= " (OG)";
                 }
                 if (in_array($val['type_of_event'], array('red-card', "yellow-card"))) {
-                    $scores .= "🥅";
+                    $scores .= "";
                     $scores .= $val['player'] . " " . $val['time'];
                 }
                 if ($val['type_of_event'] == "yellow-card") {

@@ -61,6 +61,7 @@ if (!empty($todayData)) {
         $team2flag = $flags[$team2code];
         $team2s = $todayData[$n]['away_team']['goals'];
         $scores = "$team1code $team1flag $team1s – $team2s $team2flag $team2code";
+        $scores .= "\\n--------------------\\n";
         if (($todayData[$n]['status']) == "in progress") {
             $time = $todayData[$n]['time'];
             $scores = $scores . " " . $time . " ⚽";
@@ -68,7 +69,7 @@ if (!empty($todayData)) {
             $scores .= "";
         }
         if (($todayData[$n]['status'] == "completed") || ($todayData[$n]['status'] == "in progress")) {
-            echo "\\n--------------------";
+            echo "\\n";
 
             $arrayEvents = array_merge($todayData[$n]['home_team_events'], $todayData[$n]['away_team_events']);
             $arraySortEvents = array_msort($arrayEvents, array('id'=>SORT_ASC));

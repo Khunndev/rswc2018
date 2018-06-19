@@ -43,7 +43,7 @@ if (!empty($data)) {
     $scoreLine = "⚽ ผลการแข่งขัน ⚽".date("Y-m-d H:i:s");
 };
 
-echo "\\n";
+echo "\\nn--------------------\\n";
 echo $scoreLine;
 
 $todayJson = file_get_contents("http://worldcup.sfg.io/matches/today");
@@ -98,7 +98,7 @@ if (!empty($todayData)) {
             echo $scores;
             
         } else {
-            echo "\\n".$scores;
+            echo "\\nn--------------------\\n".$scores;
         }
     }
 }

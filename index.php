@@ -1,29 +1,7 @@
 #!/usr/bin/php
 
 <?php
-/**
- * worldcup - BitBar WorldCup 2018 scores
- *
- * PHP version 7
- *
- * @author   Daniel Goldsmith <dgold@ascraeus.org>
- * @license  https://opensource.org/licenses/FPL-1.0.0 0BSD
- * @link     https://github.com/dg01d/bitbar-worldcup
- * @category Utility
- * @version  2.1
- * <bitbar.title>World Cup 2018</bitbar.title>
- * <bitbar.version>v1.0</bitbar.version>
- * <bitbar.author>Daniel Goldsmith</bitbar.author>
- * <bitbar.author.github>dg01d</bitbar.author.github>
- * <bitbar.desc>Shows current and daily scores from the 2018 World Cup. Needs Steve Edson's bitbar-php: https://github.com/SteveEdson/bitbar-php </bitbar.desc>
- * <bitbar.image>https://raw.githubusercontent.com/dg01d/bitbar-worldcup/master/bitbar-worldcup.png</bitbar.image>
- * <bitbar.dependencies>php,bitbar-php</bitbar.dependencies>
- * <bitbar.abouturl>https://github.com/dg01d/bitbar-worldcup</bitbar.abouturl>
- * Instructions: Install bitbar-php following the instructions on that project's github page.
- * Uses the wonderful World Cup API provided by http://worldcup.sfg.io
- */
-require ".bitbar/vendor/autoload.php";
-use SteveEdson\BitBar;
+
 function array_msort($array, $cols)
 {
     $colarr = array();
@@ -49,8 +27,6 @@ function array_msort($array, $cols)
 }
 $flagsrc = '{"PAN":"🇵🇦","TUN":"🇹🇳","ENG":"🏴󠁧󠁢󠁥󠁮󠁧󠁿","POL":"🇵🇱","JPN":"🇯🇵","COL":"🇨🇴","SEN":"🇸🇳","ARG":"🇦🇷","ISL":"🇮🇸","PER":"🇵🇪","DEN":"🇩🇰","CRO":"🇭🇷","NGA":"🇳🇬","RUS":"🇷🇺","KSA":"🇸🇦","EGY":"🇪🇬","URU":"🇺🇾","POR":"🇵🇹","ESP":"🇪🇸","MAR":"🇲🇦","IRN":"🇮🇷","FRA":"🇫🇷","AUS":"🇦🇺","BRA":"🇧🇷","SUI":"🇨🇭","CRC":"🇨🇷","SRB":"🇷🇸","GER":"🇩🇪","MEX":"🇲🇽","SWE":"🇸🇪","KOR":"🇰🇷","BEL":"🇧🇪"}';
 $flags = json_decode($flagsrc, true);
-// Create BitBar formatter
-$bb = new BitBar();
 $json = file_get_contents("http://worldcup.sfg.io/matches/current");
 $data = json_decode($json, true);
 if (!empty($data)) {
@@ -64,11 +40,7 @@ if (!empty($data)) {
 } else {
     $scoreLine = "⚽";
 };
-$line = $bb->newLine();
-$line
-    ->setText($scoreLine)
-    ->setFontFace("SF Mono")
-    ->show();
+echo "<hr>".$scoreLine;
 $todayJson = file_get_contents("http://worldcup.sfg.io/matches/today");
 $todayData = json_decode($todayJson, true);
 if (!empty($todayData)) {
@@ -91,7 +63,7 @@ if (!empty($todayData)) {
             $scores .= " | href=$match";
         }
         if (($todayData[$n]['status'] == "completed") || ($todayData[$n]['status'] == "in progress")) {
-            $line = $bb->newLine();
+            echo "<hr>";
             $arrayEvents = array_merge($todayData[$n]['home_team_events'], $todayData[$n]['away_team_events']);
             $arraySortEvents = array_msort($arrayEvents, array('id'=>SORT_ASC));
             foreach ($arraySortEvents as $val) {
@@ -117,17 +89,10 @@ if (!empty($todayData)) {
                 }
                 $scores .= " | size=11";
             }
-            $comGame = $line
-                ->setText($scores)
-                ->setDropdown(true);
-            $comGame->show();
+            echo $scores;
         } else {
-            $line = $bb->newLine();
-            $line
-                ->setText($scores)
-                ->setFontFace("SF Mono")
-                ->setDropdown(true)
-                ->show();
+            echo "<hr>".$scores;
         }
     }
 }
+?>

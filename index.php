@@ -53,12 +53,11 @@ if (!empty($todayData)) {
         $team2flag = $flags[$team2code];
         $team2s = $todayData[$n]['away_team']['goals'];
         $scores = "$team1code $team1flag $team1s – $team2s $team2flag $team2code";
-        $match = "\"https://www.fifa.com/worldcup/matches/match/" . $todayData[$n]['fifa_id'] . "/#match-summary\"";
         if (($todayData[$n]['status']) == "in progress") {
             $time = $todayData[$n]['time'];
-            $scores = $scores . " " . $time . " ⚽| href=$match";
+            $scores = $scores . " " . $time . " ⚽";
         } else {
-            $scores .= " | href=$match";
+            $scores .= " ";
         }
         if (($todayData[$n]['status'] == "completed") || ($todayData[$n]['status'] == "in progress")) {
             echo "\n";

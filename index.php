@@ -40,12 +40,12 @@ if (!empty($data)) {
     $awayTeamScore = $data[0]['away_team']['goals'];
     $scoreLine = "$homeTeamFlag $homeTeamScore — $awayTeamScore $awayTeamFlag";
 } else {
-    $scoreLine = "⚽ ผลการแข่งขัน ⚽".date("Y-m-d H:i:s");
+    $scoreLine = "⚽ ผลการแข่งขัน ⚽\\n".date("Y-m-d H:i:s");
 };
 
-echo "\\nn--------------------\\n";
-echo $scoreLine;
 
+echo $scoreLine;
+echo "\\n--------------------\\n";
 $todayJson = file_get_contents("http://worldcup.sfg.io/matches/today");
 $todayData = json_decode($todayJson, true);
 
@@ -98,7 +98,7 @@ if (!empty($todayData)) {
             echo $scores;
             
         } else {
-            echo "\\nn--------------------\\n".$scores;
+            echo "\\n--------------------\\n".$scores;
         }
     }
 }

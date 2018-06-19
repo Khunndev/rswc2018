@@ -45,14 +45,13 @@ if (!empty($data)) {
 
 
 echo $scoreLine;
-echo "\\n1--------------------";
 $todayJson = file_get_contents("http://worldcup.sfg.io/matches/today");
 $todayData = json_decode($todayJson, true);
 
 if (!empty($todayData)) {
     $cnt = count($todayData);
     for ($n = 0; $n < $cnt; $n++) {
-        echo "\\n2--------------------";
+        echo "\\n----------------";
         $team1 = $todayData[$n]['home_team']['country'];
         $team1code =  $todayData[$n]['home_team']['code'];
         $team1flag = $flags[$team1code];
@@ -68,7 +67,7 @@ if (!empty($todayData)) {
         } else {
             $scores .= "";
         }
-        $scores .= "\\n3-----------------";
+        $scores .= "\\n***********";
         if (($todayData[$n]['status'] == "completed") || ($todayData[$n]['status'] == "in progress")) {
             echo "\\n";
 

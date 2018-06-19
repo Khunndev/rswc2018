@@ -74,8 +74,8 @@ if (!empty($todayData)) {
             $arraySortEvents = array_msort($arrayEvents, array('id'=>SORT_ASC));
             foreach ($arraySortEvents as $val) {
                 if (in_array($val['type_of_event'], array('goal', "goal-own", "goal-penalty"))) {
-                    $scores .= "🥅";
-                    $scores .= $val['player'] . " " . $val['time'];
+                    $scores .= "\n🥅";
+                    $scores .= $val['player'] . " " . $val['time']."\n";
                 }
                 if ($val['type_of_event'] == "goal-penalty") {
                     $scores .= " (P)";
@@ -84,7 +84,7 @@ if (!empty($todayData)) {
                     $scores .= " (OG)";
                 }
                 if (in_array($val['type_of_event'], array('red-card', "yellow-card"))) {
-                    $scores .= "";
+                    $scores .= "\n";
                     $scores .= $val['player'] . " " . $val['time'];
                 }
                 if ($val['type_of_event'] == "yellow-card") {
@@ -93,7 +93,7 @@ if (!empty($todayData)) {
                 if ($val['type_of_event'] == "red-card") {
                     $scores .= "🎴";
                 }
-                $scores .= "\n";
+                $scores .= "";
             }
             echo $scores;
             

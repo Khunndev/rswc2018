@@ -38,9 +38,9 @@ if (!empty($data)) {
     $awayTeam = $data[0]['away_team']['code'];
     $awayTeamFlag = $flags[$awayTeam];
     $awayTeamScore = $data[0]['away_team']['goals'];
-    $scoreLine = "$homeTeamFlag $homeTeamScore — $awayTeamScore $awayTeamFlag";
+    $scoreLine = "$homeTeamFlag $homeTeam $homeTeamScore —  $awayTeamScore $awayTeam $awayTeamFlag";
 } else {
-    $scoreLine = "⚽;
+    $scoreLine = "⚽";
 };
 
 

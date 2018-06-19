@@ -30,7 +30,7 @@ $flags = json_decode($flagsrc, true);
 $json = file_get_contents("http://worldcup.sfg.io/matches/current");
 $data = json_decode($json, true);
 
-
+$scoreLine = "⚽ ผลการแข่งขัน ⚽\\n".date("Y-m-d H:i:s");
 if (!empty($data)) {
     $homeTeam = $data[0]['home_team']['code'];
     $homeTeamFlag= $flags[$homeTeam];
@@ -40,7 +40,7 @@ if (!empty($data)) {
     $awayTeamScore = $data[0]['away_team']['goals'];
     $scoreLine = "$homeTeamFlag $homeTeamScore — $awayTeamScore $awayTeamFlag";
 } else {
-    $scoreLine = "⚽ ผลการแข่งขัน ⚽\\n".date("Y-m-d H:i:s");
+    $scoreLine = "⚽;
 };
 
 
@@ -62,12 +62,9 @@ if (!empty($todayData)) {
         $team2flag = $flags[$team2code];
         $team2s = $todayData[$n]['away_team']['goals'];
         $scores = "$team1code $team1flag $team1s – $team2s $team2flag $team2code";
-        if ($todayData[$n]['status'] == "completed"){
-            $scores .="\\nจบแล้ว";
-        }
         if (($todayData[$n]['status']) == "in progress") {
             $time = $todayData[$n]['time'];
-            $scores = $scores . " " . $time . " กำลังแข่ง";
+            $scores = $scores . " " . $time . "⚽";
         } else {
             $scores .= "";
         }

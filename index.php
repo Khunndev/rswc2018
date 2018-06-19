@@ -63,11 +63,14 @@ if (!empty($todayData)) {
         $scores = "$team1code $team1flag $team1s – $team2s $team2flag $team2code";
         if (($todayData[$n]['status']) == "in progress") {
             $time = $todayData[$n]['time'];
-            $scores = $scores . "กำลังแข่ง " . $time . "⚽";
+            $scores = $scores . "\\nกำลังแข่ง " . $time . "⚽";
+        } 
+        if ($todayData[$n]['status'] == "completed"){
+            $scores = $scores . "\\nแข่งจบแล้ว ";
         } else {
             $scores .= "";
         }
-        $scores .= "\\n*******************";
+        $scores .= "\\n-------------------";
         if (($todayData[$n]['status'] == "completed") || ($todayData[$n]['status'] == "in progress")) {
             echo "\\n";
 

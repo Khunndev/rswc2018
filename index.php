@@ -45,7 +45,7 @@ if (!empty($data)) {
 
 
 echo $scoreLine;
-echo "\\n--------------------\\n";
+echo "\\n--------------------";
 $todayJson = file_get_contents("http://worldcup.sfg.io/matches/today");
 $todayData = json_decode($todayJson, true);
 
@@ -68,7 +68,7 @@ if (!empty($todayData)) {
             $scores .= "";
         }
         if (($todayData[$n]['status'] == "completed") || ($todayData[$n]['status'] == "in progress")) {
-            echo "\\n";
+            echo "\\n--------------------";
 
             $arrayEvents = array_merge($todayData[$n]['home_team_events'], $todayData[$n]['away_team_events']);
             $arraySortEvents = array_msort($arrayEvents, array('id'=>SORT_ASC));

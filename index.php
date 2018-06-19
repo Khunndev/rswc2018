@@ -61,15 +61,16 @@ if (!empty($todayData)) {
         $team2flag = $flags[$team2code];
         $team2s = $todayData[$n]['away_team']['goals'];
         $scores = "$team1code $team1flag $team1s – $team2s $team2flag $team2code";
-        if (($todayData[$n]['status'] == "completed")
+        if ($todayData[$n]['status'] == "completed"){
             $scores .="จบแล้ว";
-        $scores .= "\\n--------------------";
+        }
         if (($todayData[$n]['status']) == "in progress") {
             $time = $todayData[$n]['time'];
             $scores = $scores . " " . $time . " ⚽กำลังแข่ง";
         } else {
             $scores .= "";
         }
+        $scores .= "\\n--------------------";
         if (($todayData[$n]['status'] == "completed") || ($todayData[$n]['status'] == "in progress")) {
             echo "\\n";
 

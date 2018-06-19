@@ -57,15 +57,15 @@ if (!empty($todayData)) {
             $time = $todayData[$n]['time'];
             $scores = $scores . " " . $time . " ⚽";
         } else {
-            $scores .= "<br>1";
+            $scores .= "<br>";
         }
         if (($todayData[$n]['status'] == "completed") || ($todayData[$n]['status'] == "in progress")) {
-            echo "<br>2";
+            echo "<br>";
             $arrayEvents = array_merge($todayData[$n]['home_team_events'], $todayData[$n]['away_team_events']);
             $arraySortEvents = array_msort($arrayEvents, array('id'=>SORT_ASC));
             foreach ($arraySortEvents as $val) {
                 if (in_array($val['type_of_event'], array('goal', "goal-own", "goal-penalty"))) {
-                    $scores .= "\n";
+                    $scores .= "<br>";
                     $scores .= $val['player'] . " " . $val['time'];
                 }
                 if ($val['type_of_event'] == "goal-penalty") {
@@ -75,7 +75,7 @@ if (!empty($todayData)) {
                     $scores .= " (OG)";
                 }
                 if (in_array($val['type_of_event'], array('red-card', "yellow-card"))) {
-                    $scores .= "\n";
+                    $scores .= "<br>";
                     $scores .= $val['player'] . " " . $val['time'];
                 }
                 if ($val['type_of_event'] == "yellow-card") {

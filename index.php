@@ -36,9 +36,9 @@ if (!empty($data)) {
     $awayTeamScore = $data[0]['away_team']['goals'];
     $scoreLine = "$homeTeamFlag $homeTeamScore — $awayTeamScore $awayTeamFlag";
 } else {
-    $scoreLine = "⚽";
+    $scoreLine = "⚽ ผลบอลล่าสุด ⚽";
 };
-echo "\n".$scoreLine;
+echo $scoreLine;
 $todayJson = file_get_contents("http://worldcup.sfg.io/matches/today");
 $todayData = json_decode($todayJson, true);
 if (!empty($todayData)) {
@@ -88,7 +88,7 @@ if (!empty($todayData)) {
             }
             echo $scores;
         } else {
-            echo "\n".$scores;
+            echo "\n\n\n".$scores;
         }
     }
 }

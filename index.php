@@ -43,7 +43,7 @@ if (!empty($data)) {
     $scoreLine = "⚽ ผลการแข่งขัน ⚽".date("Y-m-d H:i:s");
 };
 
-echo "\n";
+echo "\\n";
 echo $scoreLine;
 
 $todayJson = file_get_contents("http://worldcup.sfg.io/matches/today");
@@ -68,13 +68,13 @@ if (!empty($todayData)) {
             $scores .= "";
         }
         if (($todayData[$n]['status'] == "completed") || ($todayData[$n]['status'] == "in progress")) {
-            echo "\n";
+            echo "\\n";
 
             $arrayEvents = array_merge($todayData[$n]['home_team_events'], $todayData[$n]['away_team_events']);
             $arraySortEvents = array_msort($arrayEvents, array('id'=>SORT_ASC));
             foreach ($arraySortEvents as $val) {
                 if (in_array($val['type_of_event'], array('goal', "goal-own", "goal-penalty"))) {
-                    $scores .= "\n🥅";
+                    $scores .= "\\n🥅";
                     $scores .= $val['player'] . " " . $val['time'];
                 }
                 if ($val['type_of_event'] == "goal-penalty") {
@@ -84,7 +84,7 @@ if (!empty($todayData)) {
                     $scores .= " (OG)";
                 }
                 if (in_array($val['type_of_event'], array('red-card', "yellow-card"))) {
-                    $scores .= "\n";
+                    $scores .= "\\n";
                     $scores .= $val['player'] . " " . $val['time'];
                 }
                 if ($val['type_of_event'] == "yellow-card") {
@@ -98,7 +98,7 @@ if (!empty($todayData)) {
             echo $scores;
             
         } else {
-            echo "\n".$scores;
+            echo "\\n".$scores;
         }
     }
 }

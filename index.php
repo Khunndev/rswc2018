@@ -75,7 +75,7 @@ if (!empty($todayData)) {
             foreach ($arraySortEvents as $val) {
                 if (in_array($val['type_of_event'], array('goal', "goal-own", "goal-penalty"))) {
                     $scores .= "\n🥅";
-                    $scores .= $val['player'] . " " . $val['time']."\n";
+                    $scores .= $val['player'] . " " . $val['time'];
                 }
                 if ($val['type_of_event'] == "goal-penalty") {
                     $scores .= " (P)";
